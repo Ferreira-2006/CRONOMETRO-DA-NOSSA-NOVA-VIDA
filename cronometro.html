@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Contagem Regressiva</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,39 +33,29 @@
 <body>
     <h1>Faltam:</h1>
     <div class="cronometro" id="contador">Calculando...</div>
-
     <script>
         const destino = new Date("2025-10-18T00:00:00").getTime();
-
         function atualizaCronometro() {
             const agora = new Date().getTime();
             let distancia = destino - agora;
-
             if (distancia < 0) {
                 document.getElementById("contador").innerHTML = "Chegou o grande dia!";
                 clearInterval(intervalo);
                 return;
             }
-
             const milissegundos = distancia % 1000;
             distancia = Math.floor(distancia / 1000);
-
             const segundos = distancia % 60;
             distancia = Math.floor(distancia / 60);
-
             const minutos = distancia % 60;
             distancia = Math.floor(distancia / 60);
-
             const horas = distancia % 24;
             distancia = Math.floor(distancia / 24);
-
             const dias = distancia % 30;
             const meses = Math.floor(distancia / 30);
-
             document.getElementById("contador").innerHTML =
-                `${meses} meses ${dias} dias ${horas} horas ${minutos} min ${segundos} seg ${milissegundos} ms`;
+                `${meses} meses ${dias} dias ${horas}h ${minutos}min ${segundos}s ${milissegundos}ms`;
         }
-
         const intervalo = setInterval(atualizaCronometro, 50);
     </script>
 </body>
